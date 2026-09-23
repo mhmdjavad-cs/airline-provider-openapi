@@ -24,4 +24,25 @@ export const sessions = sqliteTable('sessions', {
     .$defaultFn(() => new Date()),
 });
 
+export const ticketSellers = sqliteTable('ticket_sellers', {
+  id: integer('id').primaryKey({ autoIncrement: true }),
+
+  name: text('name').notNull(),
+
+  username: text('username').notNull().unique(),
+
+  email: text('email').notNull().unique(),
+
+  passwordHash: text('password_hash').notNull(),
+
+  status: text('status').notNull(),
+
+  createdAt: integer('created_at', { mode: 'timestamp' })
+    .notNull()
+    .$defaultFn(() => new Date()),
+
+  updatedAt: integer('updated_at', { mode: 'timestamp' })
+    .notNull()
+    .$defaultFn(() => new Date()),
+});
 

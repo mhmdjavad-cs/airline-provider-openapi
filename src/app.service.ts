@@ -5,7 +5,7 @@ export class AppService {
   hello(): { message: string, docs: string} {
     return {
       message: 'hello 👋, welcome to the airline provider openAPI ✈️🚀.',
-      docs: 'to the api documentation, go to /docs',
+      docs: 'for the api documentation, go to /docs',
     };
   }
 }
