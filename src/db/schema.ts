@@ -150,6 +150,8 @@ export const flights = sqliteTable('flights', {
 
   flightNumber: text('flight_number').notNull().unique(),
 
+  price: integer("price").notNull(),
+
   departureAirportId: integer('departure_airport_id')
     .notNull()
     .references(() => airports.id),
@@ -208,5 +210,3 @@ export const tickets = sqliteTable('tickets', {
     .notNull()
     .$defaultFn(() => new Date()),
 });
-
-
