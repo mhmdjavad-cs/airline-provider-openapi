@@ -54,4 +54,37 @@ export class SessionService {
 
     return undefined;
   }
+
+  async findUserByUsername(username: string) {
+    const adminResult = await db
+      .select()
+      .from(admins)
+      .where(eq(admins.username, username));
+
+    if (adminResult[0]) {
+      return {
+        ...adminResult[0],
+        userType: 'ADMIN',
+      };
+    }
+
+    const sellerResult = await db
+      .select()
+      .from(ticketSellers)
+      .where(eq(ticketSellers.username, username));
+
+    if (sellerResult[0]) {
+      return {
+        ...sellerResult[0],
+        userType: 'TICKET_SELLER',
+      };
+    }
+
+    return undefined;
+  }
+
+  async deleteSession(sessionId: string) {
+    await db.delete(sessions).where(eq(sessions.id, sessionId));
+  }
+
 }
