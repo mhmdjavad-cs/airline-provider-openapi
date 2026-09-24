@@ -358,8 +358,8 @@ REFUND
 
 | Method | Endpoint       | توضیح                       |
 | ------ | -------------- | --------------------------- |
-| `POST` | `/auth/login`  | ورود Admin یا Ticket Seller |
-| `POST` | `/auth/logout` | خروج و حذف Session          |
+| `POST` | `/auth/login`  |TicketSeller یا Admin ورود |
+| `POST` | `/auth/logout` | Session خروج و حذف          |
 | `GET`  | `/auth/me`     | دریافت اطلاعات کاربر فعلی   |
 
 ---
@@ -370,7 +370,7 @@ REFUND
 
 | Method | Endpoint | توضیح       |
 | ------ | -------- | ----------- |
-| `POST` | `/admin` | ایجاد Admin |
+| `POST` | `/admin` |admin ایجاد |
 
 ---
 
@@ -409,11 +409,11 @@ REFUND
 | `PATCH`  | `/admin/flights/:id`         | ویرایش پرواز                 |
 | `DELETE` | `/admin/flights/:id`         | حذف پرواز                    |
 | `GET`    | `/admin/flights/:id/seats`   | مشاهده Seatها و availability |
-| `GET`    | `/admin/flights/:id/tickets` | مشاهده تمام Ticketهای پرواز  |
+| `GET`    | `/admin/flights/:id/tickets` | های پرواز Ticket مشاهده‌ی تمام  |
 
 ---
 
-## Ticket Sellerها
+## هاTicket Seller
 
 | Method   | Endpoint                    | توضیح                 |
 | -------- | --------------------------- | --------------------- |
@@ -429,7 +429,7 @@ REFUND
 
 | Method | Endpoint                                        | توضیح                 |
 | ------ | ----------------------------------------------- | --------------------- |
-| `GET`  | `/admin/ticket-sellers/:id/wallet`              | مشاهده Wallet فروشنده |
+| `GET`  | `/admin/ticket-sellers/:id/wallet`              | فروشنده Wallet مشاهده |
 | `POST` | `/admin/ticket-sellers/:id/wallet/deposit`      | افزایش موجودی         |
 | `GET`  | `/admin/ticket-sellers/:id/wallet/transactions` | مشاهده تراکنش‌ها      |
 
@@ -443,7 +443,7 @@ REFUND
 | ------ | ---------------------------- | ---------------------------- |
 | `GET`  | `/sellers/flights`           | جستجو و مشاهده پروازها       |
 | `GET`  | `/sellers/flights/:id`       | مشاهده جزئیات پرواز          |
-| `GET`  | `/sellers/flights/:id/seats` | مشاهده Seatها و availability |
+| `GET`  | `/sellers/flights/:id/seats` | availability ها و Seat مشاهده |
 
 ---
 
@@ -454,7 +454,7 @@ REFUND
 | `POST` | `/sellers/tickets`            | خرید بلیت                |
 | `GET`  | `/sellers/tickets`            | مشاهده بلیت‌های فروشنده  |
 | `GET`  | `/sellers/tickets/:id`        | مشاهده جزئیات یک بلیت    |
-| `POST` | `/sellers/tickets/:id/cancel` | لغو بلیت و دریافت Refund |
+| `POST` | `/sellers/tickets/:id/cancel` | Refund لغو بلیت و دریافت |
 
 ---
 
@@ -462,7 +462,7 @@ REFUND
 
 | Method | Endpoint                       | توضیح                    |
 | ------ | ------------------------------ | ------------------------ |
-| `GET`  | `/sellers/wallet`              | مشاهده موجودی Wallet     |
+| `GET`  | `/sellers/wallet`              | Wallet مشاهده‌ی موجودی     |
 | `GET`  | `/sellers/wallet/transactions` | مشاهده تاریخچه تراکنش‌ها |
 
 ---
