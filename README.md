@@ -1,124 +1,522 @@
-<p align="center">
-  <a href="http://nestjs.com/" target="blank"><img src="https://nestjs.com/img/logo-small.svg" width="120" alt="Nest Logo" /></a>
-</p>
+# ✈️ Airlines Open API
 
-[circleci-image]: https://img.shields.io/circleci/build/github/nestjs/nest/master?token=abc123def456
-[circleci-url]: https://circleci.com/gh/nestjs/nest
+یک REST API برای مدیریت سیستم فروش بلیت هواپیما، با قابلیت مدیریت پروازها، هواپیماها، فرودگاه‌ها، فروشندگان بلیت، کیف پول و خرید و لغو بلیت.
 
-  <p align="center">A progressive <a href="http://nodejs.org" target="_blank">Node.js</a> framework for building efficient and scalable server-side applications.</p>
-    <p align="center">
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/v/@nestjs/core.svg" alt="NPM Version" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/l/@nestjs/core.svg" alt="Package License" /></a>
-<a href="https://www.npmjs.com/~nestjscore" target="_blank"><img src="https://img.shields.io/npm/dm/@nestjs/common.svg" alt="NPM Downloads" /></a>
-<a href="https://circleci.com/gh/nestjs/nest" target="_blank"><img src="https://img.shields.io/circleci/build/github/nestjs/nest/master" alt="CircleCI" /></a>
-<a href="https://discord.gg/G7Qnnhy" target="_blank"><img src="https://img.shields.io/badge/discord-online-brightgreen.svg" alt="Discord"/></a>
-<a href="https://opencollective.com/nest#backer" target="_blank"><img src="https://opencollective.com/nest/backers/badge.svg" alt="Backers on Open Collective" /></a>
-<a href="https://opencollective.com/nest#sponsor" target="_blank"><img src="https://opencollective.com/nest/sponsors/badge.svg" alt="Sponsors on Open Collective" /></a>
-  <a href="https://paypal.me/kamilmysliwiec" target="_blank"><img src="https://img.shields.io/badge/Donate-PayPal-ff3f59.svg" alt="Donate us"/></a>
-    <a href="https://opencollective.com/nest#sponsor"  target="_blank"><img src="https://img.shields.io/badge/Support%20us-Open%20Collective-41B883.svg" alt="Support us"></a>
-  <a href="https://twitter.com/nestframework" target="_blank"><img src="https://img.shields.io/twitter/follow/nestframework.svg?style=social&label=Follow" alt="Follow us on Twitter"></a>
-</p>
-  <!--[![Backers on Open Collective](https://opencollective.com/nest/backers/badge.svg)](https://opencollective.com/nest#backer)
-  [![Sponsors on Open Collective](https://opencollective.com/nest/sponsors/badge.svg)](https://opencollective.com/nest#sponsor)-->
+---
 
-## Description
+## 🛠️ تکنولوژی‌ها
 
-[Nest](https://github.com/nestjs/nest) framework TypeScript starter repository.
+* **NestJS** — Backend Framework
+* **TypeScript** — Programming Language
+* **SQLite** — Database
+* **Drizzle ORM** — Database ORM
+* **better-sqlite3** — SQLite Driver
+* **Swagger / OpenAPI** — API Documentation
+* **Cookie-based Sessions** — Authentication
 
-## Project setup
+---
+
+# 🚀 نصب و اجرای پروژه
+
+## 1. دریافت پروژه
+
+ابتدا repository را clone کنید:
 
 ```bash
-$ npm install
+git clone <REPOSITORY_URL>
+cd airlines-open-api
 ```
 
-## Compile and run the project
+## 2. نصب Dependencyها
 
 ```bash
-# development
-$ npm run start
-
-# watch mode
-$ npm run start:dev
-
-# production mode
-$ npm run start:prod
+npm install
 ```
 
-## Run tests
+## 3. ساخت Database
+
+پروژه از SQLite استفاده می‌کند و فایل دیتابیس به صورت زیر ساخته می‌شود:
+
+```text
+airlines.db
+```
+
+برای ایجاد و اجرای migrationها:
 
 ```bash
-# unit tests
-$ npm run test
-
-# e2e tests
-$ npm run test:e2e
-
-# test coverage
-$ npm run test:cov
+npx drizzle-kit generate
+npx drizzle-kit migrate
 ```
 
-## Deployment
+> در صورتی که migrationها از قبل در repository موجود باشند، معمولاً اجرای `migrate` کافی است.
 
-When you're ready to deploy your NestJS application to production, there are some key steps you can take to ensure it runs as efficiently as possible. Check out the [deployment documentation](https://docs.nestjs.com/deployment) for more information.
+## 4. اجرای پروژه
 
-If you are looking for a cloud-based platform to deploy your NestJS application, check out [Mau](https://mau.nestjs.com), our official platform for deploying NestJS applications on AWS. Mau makes deployment straightforward and fast, requiring just a few simple steps:
+برای اجرای پروژه در محیط development:
 
 ```bash
-$ npm install -g @nestjs/mau
-$ mau deploy
+npm run start:dev
 ```
 
-With Mau, you can deploy your application in just a few clicks, allowing you to focus on building features rather than managing infrastructure.
+پس از اجرا، API روی آدرس زیر در دسترس خواهد بود:
 
-## Observability
-
-In production applications, observability is essential for understanding how your system behaves, detecting issues early, and maintaining reliable performance.
-
-[NestJS Observe](https://observe.nestjs.com) automatically instruments your NestJS application, giving you deep visibility into your system with minimal setup:
-
-- **Distributed tracing:** Follow requests across services and understand how they flow through your system.
-- **Waterfall analysis:** Visualize request execution and identify slow operations, bottlenecks, and unexpected delays.
-- **Performance analysis:** Analyze application performance in real time and quickly pinpoint areas that need optimization.
-- **Metrics:** Track key application and infrastructure metrics to understand system health and performance trends.
-- **Logging:** Centralize and correlate logs with traces and other telemetry to make debugging easier.
-- **Error tracking:** Detect errors quickly and investigate their root causes with the surrounding context.
-- **SLA monitoring:** Track service-level objectives and identify when your application is approaching or exceeding defined thresholds.
-- **Alarms and alerts:** Set up alerts for critical errors, performance degradation, SLA violations, and other anomalies so your team can react quickly.
-
-To add it to this project:
-
-```bash
-$ npm install @nestjs/observe
+```text
+http://localhost:3000
 ```
 
-Then follow the [setup guide](https://docs.nestjs.com/observability/overview) - it takes a single import and an app key.
+---
 
-The free plan needs no payment details and covers 300,000 events a month. You can also browse the [live demo](https://www.observe-demo.nestjs.com/dashboard) first - the whole dashboard over a busy service's data, with nothing to install.
+# 📚 مستندات API
 
-## Resources
+مستندات کامل API با Swagger در دسترس است:
 
-Check out a few resources that may come in handy when working with NestJS:
+```text
+http://localhost:3000/docs
+```
 
-- Visit the [NestJS Documentation](https://docs.nestjs.com) to learn more about the framework.
-- For questions and support, please visit our [Discord channel](https://discord.gg/G7Qnnhy).
-- To dive deeper and get more hands-on experience, check out our official video [courses](https://courses.nestjs.com/).
-- Deploy your application to AWS with the help of [NestJS Mau](https://mau.nestjs.com) in just a few clicks.
-- Auto-instrument your application with [NestJS Observe](https://observe.nestjs.com). Distributed tracing, metrics, and logging made easy. Error tracking and performance monitoring for your NestJS applications.
-- Visualize your application graph and interact with the NestJS application in real-time using [NestJS Devtools](https://devtools.nestjs.com).
-- Need help with your project (part-time to full-time)? Check out our official [enterprise support](https://enterprise.nestjs.com).
-- To stay in the loop and get updates, follow us on [X](https://x.com/nestframework) and [LinkedIn](https://linkedin.com/company/nestjs).
-- Looking for a job, or have a job to offer? Check out our official [Jobs board](https://jobs.nestjs.com).
+در Swagger می‌توانید تمام endpointها، requestها و responseهای API را مشاهده و تست کنید.
 
-## Support
+---
 
-Nest is an MIT-licensed open source project. It can grow thanks to the sponsors and support by the amazing backers. If you'd like to join them, please [read more here](https://docs.nestjs.com/support).
+# 🔐 احراز هویت
 
-## Stay in touch
+سیستم احراز هویت پروژه بر اساس **Session** و Cookie پیاده‌سازی شده است.
 
-- Author - [Kamil Myśliwiec](https://twitter.com/kammysliwiec)
-- Website - [https://nestjs.com](https://nestjs.com/)
-- Twitter - [@nestframework](https://twitter.com/nestframework)
+پس از Login، یک Cookie با نام:
 
-## License
+```text
+sessionId
+```
 
-Nest is [MIT licensed](https://github.com/nestjs/nest/blob/master/LICENSE).
+برای کاربر ایجاد می‌شود.
+
+دو نوع کاربر در سیستم وجود دارد:
+
+* **Admin**
+* **Ticket Seller**
+
+دسترسی‌های این دو نوع کاربر توسط Guardهای مربوطه کنترل می‌شود.
+
+---
+
+# 🔄 گردش کار سیستم
+
+## 1. ایجاد Admin
+
+ابتدا یک حساب Admin ایجاد می‌شود:
+
+```text
+POST /admin
+```
+
+پس از ایجاد Admin، یک Session برای او ایجاد می‌شود.
+
+---
+
+## 2. ورود به سیستم
+
+کاربر با استفاده از:
+
+```text
+POST /auth/login
+```
+
+و ارسال username و password وارد سیستم می‌شود.
+
+در صورت موفقیت، یک `sessionId` در Cookie قرار می‌گیرد.
+
+از این Session برای احراز هویت درخواست‌های بعدی استفاده می‌شود.
+
+---
+
+# 👨‍💼 گردش کار Admin
+
+Admin مسئول مدیریت اطلاعات اصلی سیستم است.
+
+### مدیریت فرودگاه‌ها
+
+Admin می‌تواند:
+
+* فرودگاه ایجاد کند
+* لیست فرودگاه‌ها را مشاهده کند
+* اطلاعات فرودگاه را مشاهده کند
+* فرودگاه را ویرایش کند
+* فرودگاه را حذف کند
+
+---
+
+### مدیریت هواپیماها
+
+Admin می‌تواند هواپیما ایجاد کند.
+
+هنگام ایجاد هواپیما، بر اساس ظرفیت آن، Seatهای هواپیما به صورت خودکار ساخته می‌شوند.
+
+برای مثال:
+
+```text
+Capacity = 180
+        ↓
+180 Seats
+```
+
+ظرفیت هواپیما پس از ایجاد قابل تغییر نیست تا تعداد Seatها با اطلاعات هواپیما ناسازگار نشود.
+
+---
+
+### مدیریت پروازها
+
+Admin می‌تواند پرواز ایجاد و مدیریت کند.
+
+هر پرواز شامل مواردی مانند:
+
+* شماره پرواز
+* فرودگاه مبدا
+* فرودگاه مقصد
+* هواپیما
+* قیمت
+* زمان حرکت
+* زمان رسیدن
+* وضعیت پرواز
+
+است.
+
+قیمت در سطح **Flight** تعریف می‌شود و تمام Seatهای آن پرواز همان قیمت را دارند.
+
+---
+
+### مدیریت Ticket Sellerها
+
+Admin می‌تواند فروشندگان بلیت را ایجاد و مدیریت کند.
+
+هر Ticket Seller هنگام ایجاد، یک Wallet نیز دریافت می‌کند.
+
+---
+
+### مدیریت کیف پول فروشندگان
+
+Admin می‌تواند برای Ticket Sellerها موجودی اضافه کند.
+
+برای مثال:
+
+```text
+Deposit: $5,000
+        ↓
+Seller Wallet
+        ↓
+Balance: $5,000
+```
+
+هر تغییر موجودی در `WalletTransaction` ثبت می‌شود.
+
+---
+
+# 🧑‍💼 گردش کار Ticket Seller
+
+Ticket Seller مسئول فروش بلیت به مسافران است.
+
+## 1. مشاهده پروازها
+
+فروشنده می‌تواند پروازهای موجود را مشاهده و جستجو کند:
+
+```text
+GET /sellers/flights
+```
+
+---
+
+## 2. مشاهده صندلی‌های پرواز
+
+پس از انتخاب یک پرواز:
+
+```text
+GET /sellers/flights/:id/seats
+```
+
+لیست Seatها و وضعیت availability نمایش داده می‌شود.
+
+مثلاً:
+
+```json
+[
+  {
+    "id": 25,
+    "number": "25",
+    "price": 15000,
+    "available": true
+  }
+]
+```
+
+---
+
+## 3. خرید بلیت
+
+فروشنده اطلاعات مسافر و Seat انتخاب‌شده را ارسال می‌کند:
+
+```text
+POST /sellers/tickets
+```
+
+در زمان خرید:
+
+```text
+Flight Price
+     ↓
+Check Seat
+     ↓
+Check Seller Wallet
+     ↓
+Create Ticket
+     ↓
+Deduct Wallet Balance
+     ↓
+Create Wallet Transaction
+```
+
+قیمت از خود Flight گرفته می‌شود و فروشنده نمی‌تواند قیمت بلیت را در request تغییر دهد.
+
+---
+
+## 4. مشاهده بلیت‌ها
+
+فروشنده می‌تواند بلیت‌های خودش را مشاهده کند:
+
+```text
+GET /sellers/tickets
+```
+
+همچنین می‌تواند جزئیات یک بلیت خاص را مشاهده کند:
+
+```text
+GET /sellers/tickets/:id
+```
+
+فروشنده فقط به بلیت‌های متعلق به خودش دسترسی دارد.
+
+---
+
+## 5. لغو بلیت
+
+برای لغو بلیت:
+
+```text
+POST /sellers/tickets/:id/cancel
+```
+
+در این حالت:
+
+```text
+Ticket → CANCELLED
+       ↓
+Refund
+       ↓
+Seller Wallet
+       ↓
+REFUND Transaction
+```
+
+بلیت حذف نمی‌شود و برای حفظ تاریخچه در Database باقی می‌ماند.
+
+---
+
+# 💰 Wallet و تراکنش‌ها
+
+موجودی Wallet به صورت **integer cents** ذخیره می‌شود.
+
+مثلاً:
+
+```text
+15000 = $150.00
+50000 = $500.00
+```
+
+این روش از مشکلات مربوط به ذخیره مستقیم مقادیر اعشاری پول جلوگیری می‌کند.
+
+هر تغییر موجودی شامل اطلاعات زیر در `WalletTransaction` ثبت می‌شود:
+
+* نوع تراکنش
+* مبلغ
+* موجودی قبل
+* موجودی بعد
+* Ticket مرتبط
+* توضیحات
+* زمان تراکنش
+
+انواع تراکنش:
+
+```text
+DEPOSIT
+TICKET_PURCHASE
+REFUND
+```
+
+---
+
+# 📡 API Endpoints
+
+## 🔐 Authentication
+
+| Method | Endpoint       | توضیح                       |
+| ------ | -------------- | --------------------------- |
+| `POST` | `/auth/login`  | ورود Admin یا Ticket Seller |
+| `POST` | `/auth/logout` | خروج و حذف Session          |
+| `GET`  | `/auth/me`     | دریافت اطلاعات کاربر فعلی   |
+
+---
+
+# 👨‍💼 Admin
+
+## مدیریت Admin
+
+| Method | Endpoint | توضیح       |
+| ------ | -------- | ----------- |
+| `POST` | `/admin` | ایجاد Admin |
+
+---
+
+## فرودگاه‌ها
+
+| Method   | Endpoint              | توضیح                  |
+| -------- | --------------------- | ---------------------- |
+| `POST`   | `/admin/airports`     | ایجاد فرودگاه          |
+| `GET`    | `/admin/airports`     | دریافت تمام فرودگاه‌ها |
+| `GET`    | `/admin/airports/:id` | دریافت یک فرودگاه      |
+| `PATCH`  | `/admin/airports/:id` | ویرایش فرودگاه         |
+| `DELETE` | `/admin/airports/:id` | حذف فرودگاه            |
+
+---
+
+## هواپیماها
+
+| Method   | Endpoint                       | توضیح                 |
+| -------- | ------------------------------ | --------------------- |
+| `POST`   | `/admin/airplanes`             | ایجاد هواپیما         |
+| `GET`    | `/admin/airplanes`             | دریافت تمام هواپیماها |
+| `GET`    | `/admin/airplanes/:id`         | دریافت یک هواپیما     |
+| `PATCH`  | `/admin/airplanes/:id`         | ویرایش هواپیما        |
+| `DELETE` | `/admin/airplanes/:id`         | حذف هواپیما           |
+| `GET`    | `/admin/airplanes/:id/flights` | پروازهای یک هواپیما   |
+
+---
+
+## پروازها
+
+| Method   | Endpoint                     | توضیح                        |
+| -------- | ---------------------------- | ---------------------------- |
+| `POST`   | `/admin/flights`             | ایجاد پرواز                  |
+| `GET`    | `/admin/flights`             | دریافت تمام پروازها          |
+| `GET`    | `/admin/flights/:id`         | دریافت یک پرواز              |
+| `PATCH`  | `/admin/flights/:id`         | ویرایش پرواز                 |
+| `DELETE` | `/admin/flights/:id`         | حذف پرواز                    |
+| `GET`    | `/admin/flights/:id/seats`   | مشاهده Seatها و availability |
+| `GET`    | `/admin/flights/:id/tickets` | مشاهده تمام Ticketهای پرواز  |
+
+---
+
+## Ticket Sellerها
+
+| Method   | Endpoint                    | توضیح                 |
+| -------- | --------------------------- | --------------------- |
+| `POST`   | `/admin/ticket-sellers`     | ایجاد فروشنده         |
+| `GET`    | `/admin/ticket-sellers`     | دریافت تمام فروشندگان |
+| `GET`    | `/admin/ticket-sellers/:id` | دریافت یک فروشنده     |
+| `PATCH`  | `/admin/ticket-sellers/:id` | ویرایش فروشنده        |
+| `DELETE` | `/admin/ticket-sellers/:id` | حذف فروشنده           |
+
+---
+
+## Wallet فروشندگان — Admin
+
+| Method | Endpoint                                        | توضیح                 |
+| ------ | ----------------------------------------------- | --------------------- |
+| `GET`  | `/admin/ticket-sellers/:id/wallet`              | مشاهده Wallet فروشنده |
+| `POST` | `/admin/ticket-sellers/:id/wallet/deposit`      | افزایش موجودی         |
+| `GET`  | `/admin/ticket-sellers/:id/wallet/transactions` | مشاهده تراکنش‌ها      |
+
+---
+
+# 🧑‍💼 Seller API
+
+## پروازها
+
+| Method | Endpoint                     | توضیح                        |
+| ------ | ---------------------------- | ---------------------------- |
+| `GET`  | `/sellers/flights`           | جستجو و مشاهده پروازها       |
+| `GET`  | `/sellers/flights/:id`       | مشاهده جزئیات پرواز          |
+| `GET`  | `/sellers/flights/:id/seats` | مشاهده Seatها و availability |
+
+---
+
+## بلیت‌ها
+
+| Method | Endpoint                      | توضیح                    |
+| ------ | ----------------------------- | ------------------------ |
+| `POST` | `/sellers/tickets`            | خرید بلیت                |
+| `GET`  | `/sellers/tickets`            | مشاهده بلیت‌های فروشنده  |
+| `GET`  | `/sellers/tickets/:id`        | مشاهده جزئیات یک بلیت    |
+| `POST` | `/sellers/tickets/:id/cancel` | لغو بلیت و دریافت Refund |
+
+---
+
+## Wallet
+
+| Method | Endpoint                       | توضیح                    |
+| ------ | ------------------------------ | ------------------------ |
+| `GET`  | `/sellers/wallet`              | مشاهده موجودی Wallet     |
+| `GET`  | `/sellers/wallet/transactions` | مشاهده تاریخچه تراکنش‌ها |
+
+---
+
+# 🗄️ ساختار کلی سیستم
+
+```text
+                    ┌──────────────┐
+                    │    Admin     │
+                    └──────┬───────┘
+                           │
+          ┌────────────────┼────────────────┐
+          ↓                ↓                ↓
+     Airports          Airplanes         Sellers
+          │                │                │
+          │                ↓                ↓
+          │              Seats            Wallet
+          │                │                │
+          └────────────┐   │                │
+                       ↓   ↓                ↓
+                       Flights ←─────── Tickets
+                           │                │
+                           └──────┬─────────┘
+                                  ↓
+                         Wallet Transactions
+```
+
+---
+
+# 📌 نکات مهم
+
+* تمام endpointهای Admin با `AdminGuard` محافظت می‌شوند.
+* تمام endpointهای Seller با `TicketSellerGuard` محافظت می‌شوند.
+* Session از طریق `sessionId` Cookie مدیریت می‌شود.
+* هر Ticket به یک Seller مشخص تعلق دارد.
+* Seller فقط می‌تواند Ticketهای خودش را مشاهده یا لغو کند.
+* قیمت Ticket از قیمت Flight گرفته می‌شود.
+* قیمت Ticket پس از خرید داخل Ticket ذخیره می‌شود تا قیمت تاریخی خرید حفظ شود.
+* Seatهای یک هواپیما هنگام ایجاد هواپیما به صورت خودکار ساخته می‌شوند.
+* Ticketهای لغوشده حذف نمی‌شوند و برای حفظ تاریخچه باقی می‌مانند.
+* عملیات خرید و Refund به همراه تغییر موجودی Wallet در Transaction انجام می‌شوند.
+
+---
+
+# 📖 API Documentation
+
+برای مشاهده و تست APIها از Swagger استفاده کنید:
+
+```text
+http://localhost:3000/docs
+```
+
+---
+
+## 👨‍💻 Project
+
+این پروژه با هدف پیاده‌سازی یک Backend واقعی برای مدیریت فروش بلیت هواپیما و تمرین طراحی API، Authentication، Database و مدیریت تراکنش‌های مالی توسعه داده شده است.
